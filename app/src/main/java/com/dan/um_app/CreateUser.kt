@@ -15,7 +15,6 @@ import com.dan.um_app.adapter.classAdapter
 import com.dan.um_app.databinding.ActivityCreateUserBinding
 import com.dan.um_app.databinding.CustomAddclassBinding
 import com.dan.um_app.model.Subject
-import com.dan.um_app.model.Tien_day1H
 import com.dan.um_app.model.entitis.NClass
 import com.dan.um_app.model.entitis.Teacher
 import com.dan.um_app.model.entitis.const
@@ -41,45 +40,24 @@ class CreateUser : AppCompatActivity() {
 
         try {
             oldTeacher = intent.getSerializableExtra("current_teacher") as Teacher
-            binding.edtTitle.setText(oldTeacher.name)
-            binding.edtNote.setText(oldTeacher.idT)
+            binding.edtName.setText(oldTeacher.name)
+            binding.edtID.setText(oldTeacher.idT)
             binding.edtbc.setText(oldTeacher.bc)
-            hsgv = ex(oldTeacher.bc.toString())
+            hsgv = findHSGV(oldTeacher.bc.toString())
             binding.txthsgv.setText(hsgv.toString())
             Glide.with(applicationContext).load(const.listImg[oldTeacher.id!!-1]).into(binding.imgView)
             isUpdate = true
         }catch (exception: Exception){
             exception.printStackTrace()
         }
-        binding.btnDone.setOnClickListener {
-            val title_str = binding.edtTitle.text.toString()
-            val note_str = binding.edtNote.text.toString()
-            val note_bc = binding.edtbc.text.toString()
-            if(title_str.isNotEmpty() || note_str.isNotEmpty()){
-                if(isUpdate){
-                    teacher = Teacher(oldTeacher.id,title_str,note_str,note_bc)
-                }else{
-                    teacher = Teacher(null,title_str,note_str,note_bc)
-                }
-                val intent = Intent()
-                intent.putExtra("teacher",teacher)
-                setResult(Activity.RESULT_OK,intent)
-                finish()
-            }else{
-                Toast.makeText(this@CreateUser, "Please Typing some data !!!", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-        }
-        binding.btnExit.setOnClickListener {
-            onBackPressed()
-        }
-//        binding.btnFavorite.setOnClickListener {
-//            Toast.makeText(this@CreateUser,"Added to success list", Toast.LENGTH_LONG).show()
-//        }
-//        binding.txtRandomNote.setText(const.createNote())
 
-        buildADD()
+        buildBtn()
+        buildAlertDialog()
+        buildListClass()
 
+    }
+
+    private fun buildListClass() {
         val list = const.listNClass.filter { it.id_gv == oldTeacher.id}
         val rvAdapter = classAdapter(list,object: Util{
             override fun OnClickTitle(pos: Int) {
@@ -101,19 +79,44 @@ class CreateUser : AppCompatActivity() {
             var tt1lop: Double = 0.0
             var hs: Double = 0.0
             for(d in list){
-                tt1lop = d.stiet*(d.hsmh + d.hslh + hsgv)*Tien_day1H
+                tt1lop = d.stiet*(d.hsmh + d.hslh + hsgv)*const.Tien_day1H
                 tt = tt + tt1lop
             }
-            binding.txttt.setText("Tong tien :${tt}")
+            binding.txttt.setText("Total amount: ${tt} VND")
+            tt =0.0
         }
+    }
 
+    private fun buildBtn() {
+        binding.btnDone.setOnClickListener {
+            val name_str = binding.edtName.text.toString()
+            val id_str = binding.edtID.text.toString()
+            val bc_str = binding.edtbc.text.toString()
+            if(name_str.isNotEmpty() || id_str.isNotEmpty() || bc_str.isNotEmpty()){
+                if(isUpdate){
+                    teacher = Teacher(oldTeacher.id,name_str,id_str,bc_str)
+                }else{
+                    teacher = Teacher(null,name_str,id_str,bc_str)
+                }
+                val intent = Intent()
+                intent.putExtra("teacher",teacher)
+                setResult(Activity.RESULT_OK,intent)
+                finish()
+            }else{
+                Toast.makeText(this@CreateUser, "Please Typing some data !!!", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+        }
+        binding.btnExit.setOnClickListener {
+            onBackPressed()
+        }
     }
 //
 //    private fun buildInti() {
 //
 //    }
 
-    private fun buildADD() {
+    private fun buildAlertDialog() {
         binding.btnAddclass.setOnClickListener {
             val build = AlertDialog.Builder(this,R.style.ThemeCustom)
             // khác so với extension là binding tự động gọi nên inflate from this là được
@@ -121,6 +124,7 @@ class CreateUser : AppCompatActivity() {
             build.setView(diologBinding.root)
             diologBinding.btnExitimg.setOnClickListener { diolog.dismiss() }
             diologBinding.btnAdd.setOnClickListener{
+                if(diologBinding.edtTenLopHoc.text.isNotEmpty()|| diologBinding.edtSoluong.text.isNotEmpty()){
 //                Toast.makeText(this@CreateUser,"You just click on ADD Now",Toast.LENGTH_SHORT).show()
                 if(diologBinding.rd1.isChecked){
                     Monhoc = const.Toan
@@ -145,6 +149,10 @@ class CreateUser : AppCompatActivity() {
                 val nClass = NClass(oldTeacher.id!!,tenlh,Monhoc.name,Monhoc.heso,Monhoc.stiet,sl,hsoLophoc,hsgv)
                 buildCl(nClass)
                 diolog.dismiss()
+                }else{
+                    Toast.makeText(this@CreateUser,"Add class failed !!!",Toast.LENGTH_LONG).show()
+                    diolog.dismiss()
+                }
 
             }
             diolog = build.create()
@@ -154,7 +162,7 @@ class CreateUser : AppCompatActivity() {
 
     private fun buildCl(nClass: NClass) {
         const.listNClass.add(nClass)
-        val list = const.listNClass
+        val list = const.listNClass.filter { it.id_gv == oldTeacher.id}
         val rvAdapter = classAdapter(list,object: Util{
             override fun OnClickTitle(pos: Int) {
                 Toast.makeText(
@@ -173,8 +181,8 @@ class CreateUser : AppCompatActivity() {
         )
     }
 
-    fun ex(dio: String): Double{
-        val find = dio.lowercase()
+    fun findHSGV(bc: String): Double{
+        val find = bc.lowercase()
         when(find){
             "dai hoc"-> return 1.3
             "tien si"-> return 1.4

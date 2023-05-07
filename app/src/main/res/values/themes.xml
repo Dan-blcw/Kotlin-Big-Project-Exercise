@@ -16,5 +16,6 @@
     <!--    theme xóa viền trắng thừa khi bo góc-->
     <style name="ThemeCustom" parent="Theme.AppCompat.Light.Dialog">
     <item name="android:windowBackground">@android:color/transparent</item>
+                <item name="windowMinWidthMajor">90%</item>
     </style>
 </resources>

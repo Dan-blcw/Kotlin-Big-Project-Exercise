@@ -35,6 +35,7 @@ class TotalAdapter(private val context: Context, val ltn: NotesOnClickListener):
         return teacherList.size
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         holder.itemView.apply {
             val colorLayout = findViewById<CardView>(R.id.cart_layout)
@@ -52,7 +53,6 @@ class TotalAdapter(private val context: Context, val ltn: NotesOnClickListener):
             bc.text = "literacy: ${teacherList[position].bc}"
             idT.text = "ID: ${teacherList[position].idT}"
             idT.isSelected = true
-//            colorLayout.setCardBackgroundColor(resources.getColor(index,null))
             colorLayout.setOnClickListener {
                 ltn.onItemClick(teacherList[holder.adapterPosition])
             }
@@ -85,40 +85,12 @@ class TotalAdapter(private val context: Context, val ltn: NotesOnClickListener):
         teacherList.clear()
         for(nowIT in fullList){
             if(nowIT.name?.lowercase()?.contains(content.lowercase()) == true ||
-                nowIT.idT?.lowercase()?.contains(content.lowercase()) == true)
+                nowIT.idT?.lowercase()?.contains(content.lowercase()) == true ||
+                nowIT.bc?.lowercase()?.contains(content.lowercase()) == true)
                 teacherList.add(nowIT)
         }
         notifyDataSetChanged()
     }
-//    fun random(): Int{
-//        val list = ArrayList<Int>()
-//        list.add(R.color.do_1)
-//        list.add(R.color.do_2)
-//        list.add(R.color.do_3)
-//        list.add(R.color.do_4)
-//        list.add(R.color.do_5)
-//        list.add(R.color.do_6)
-//        list.add(R.color.do_7)
-//        list.add(R.color.do_8)
-//        list.add(R.color.do_9)
-//        list.add(R.color.do_10)
-//        list.add(R.color.do_11)
-//        list.add(R.color.do_12)
-//        list.add(R.color.do_13)
-//        list.add(R.color.do_14)
-//        list.add(R.color.do_15)
-//        list.add(R.color.do_16)
-//        list.add(R.color.do_17)
-//        list.add(R.color.do_18)
-//        list.add(R.color.do_19)
-//        list.add(R.color.do_20)
-//        list.add(R.color.do_21)
-//        list.add(R.color.do_22)
-//        list.add(R.color.do_23)
-//        val seed = System.currentTimeMillis().toInt()
-//        val randomIndex = Random(seed).nextInt(list.size)
-//        return list[randomIndex]
-//    }
     interface NotesOnClickListener{
         fun onItemClick(teacher: Teacher)
         fun onDeleteItemClick(teacher: Teacher)

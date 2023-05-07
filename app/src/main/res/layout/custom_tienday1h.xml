@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="280dp"
+    android:paddingLeft="8dp"
+    android:background="@drawable/layout_backg"
+    android:paddingRight="14dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="20dp"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="10dp">
+
+            <TextView
+                android:id="@+id/nothing99"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="cursive"
+                android:text="Add Hour"
+                android:textColor="@color/black"
+                android:textSize="28sp" />
+
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Standard hourly tuition"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/edt_HdayTC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="học phí tiêu chuẩn hàng giờ"
+            android:inputType="textPersonName"
+            android:textSize="12sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_addTienday1h"
+            android:layout_width="146dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/layout_backg"
+            android:text="Add now" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,27 +1,34 @@
 package com.dan.um_app
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dan.um_app.adapter.TotalAdapter
 import com.dan.um_app.databinding.ActivityMainBinding
+import com.dan.um_app.databinding.CustomAddclassBinding
+import com.dan.um_app.databinding.CustomTienday1hBinding
 import com.dan.um_app.dbase.AllDB
 import com.dan.um_app.model.NotesViewModel
+import com.dan.um_app.model.entitis.NClass
 import com.dan.um_app.model.entitis.Teacher
+import com.dan.um_app.model.entitis.const
 
 private lateinit var binding: ActivityMainBinding
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() ,TotalAdapter.NotesOnClickListener{
     private lateinit var binding: ActivityMainBinding
     private lateinit var dbase: AllDB
+    lateinit var diolog: AlertDialog
     lateinit var viewModel: NotesViewModel
     lateinit var adapter: TotalAdapter
-    lateinit var takeTeacher: Teacher
     private  val updateNote = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
         if(result.resultCode == Activity.RESULT_OK){
             val teacher = result.data?.getSerializableExtra("teacher") as? Teacher
@@ -34,7 +41,8 @@ class MainActivity : AppCompatActivity() ,TotalAdapter.NotesOnClickListener{
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        Roll0()
+
+        buildHdayTC()
         Roll1()
         viewModel = ViewModelProvider(this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)).get(NotesViewModel::class.java)
@@ -46,6 +54,23 @@ class MainActivity : AppCompatActivity() ,TotalAdapter.NotesOnClickListener{
         dbase = AllDB.getDB(this)
 
     }
+
+    private fun buildHdayTC() {
+        binding.btnHdayTC.setOnClickListener {
+            val build = AlertDialog.Builder(this,R.style.ThemeCustom)
+            // khác so với extension là binding tự động gọi nên inflate from this là được
+            val diologBinding = CustomTienday1hBinding.inflate(LayoutInflater.from(this))
+            build.setView(diologBinding.root)
+            diologBinding.edtHdayTC.setText(const.Tien_day1H.toString())
+            diologBinding.btnAddTienday1h.setOnClickListener{
+                const.Tien_day1H = diologBinding.edtHdayTC.text.toString().toDouble()
+                diolog.dismiss()
+            }
+            diolog = build.create()
+            diolog.show()
+        }
+    }
+
     private fun Roll1() {
         binding.rview.setHasFixedSize(true)
         binding.rview.layoutManager = LinearLayoutManager(
@@ -62,10 +87,6 @@ class MainActivity : AppCompatActivity() ,TotalAdapter.NotesOnClickListener{
                 viewModel.insert(teacher)
             }
         }
-//        binding.btnListImg.setOnClickListener {
-//            val inte = Intent(this@MainActivity,ListImage::class.java)
-//            startActivity(inte)
-//        }
         binding.btnCreateNote.setOnClickListener{
             val intent = Intent(this, CreateUser::class.java)
             getContext.launch(intent)

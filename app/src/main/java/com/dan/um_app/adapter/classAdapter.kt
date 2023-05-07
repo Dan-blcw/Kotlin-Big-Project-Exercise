@@ -10,7 +10,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.dan.um_app.R
-import com.dan.um_app.model.Tien_day1H
 import com.dan.um_app.model.entitis.NClass
 import com.dan.um_app.model.entitis.const
 
@@ -38,7 +37,7 @@ class classAdapter (var list: List<NClass>,val util: Util): RecyclerView.Adapter
             val tongtien = findViewById<TextView>(R.id.txtt1lop)
             val btn = findViewById<ImageButton>(R.id.btn_delete_Class)
 
-            tenlop.text = "Name Class :${list[position].tlh}"
+            tenlop.text = "Name Class:   ${list[position].tlh}"
             monHoc.text = "Subject :${list[position].tmh}"
             soluong.text = "Number of Student: ${list[position].ssv.toString()}"
             hsmh.text = "HSMH: ${list[position].hsmh.toString()}"
@@ -51,7 +50,7 @@ class classAdapter (var list: List<NClass>,val util: Util): RecyclerView.Adapter
                 val dialog = AlertDialog.Builder(context)
                 dialog.apply {
                     setTitle("Confirm Window")
-                    setMessage("Have you confirmed to remove the item from the cart?")
+                    setMessage("Have you confirmed to remove the class from the list?")
                     setNegativeButton("No"){ dialogInterface: DialogInterface, i: Int ->
                         dialogInterface.dismiss()
                     }
@@ -66,7 +65,7 @@ class classAdapter (var list: List<NClass>,val util: Util): RecyclerView.Adapter
         }
     }
     fun tinhtien1lop(nClass: NClass): Double{
-        return Tien_day1H*(nClass.hslh + nClass.hsgv+ nClass.hsmh)*nClass.stiet
+        return const.Tien_day1H*(nClass.hslh + nClass.hsgv+ nClass.hsmh)*nClass.stiet
     }
 
 }
