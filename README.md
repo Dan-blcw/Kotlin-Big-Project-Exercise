@@ -28,3 +28,7 @@ Algorithm design: Input, output, implementation steps
 Installation: Tools used, source code structure, meaning of each source code file, meaning of functions
 Conclusion and direction for expansion
 Specific work assignment table for each team member
+
+## Preamble
+![image](https://user-images.githubusercontent.com/127305381/236701214-146afa6b-6be5-4f4d-8b3f-f0b14fefb0c8.png)
+
