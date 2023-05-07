@@ -2,8 +2,11 @@
 ## The request report
 The teaching salary of a teacher invited for a semester at Thang Long University is the total amount of money for teaching classes in the semester, calculated as follows
 Fee for teaching each class = number of periods * (teacher coefficient + subject coefficient + class coefficient) * teaching fee for a standard hour
+
 The teacher coefficient is usually calculated according to the degree of the teacher, for example, a university graduate is 1.3, a master is 1.4, a doctor is 1.5, an associate professor is 1.6, a professor is 1.7.
+
 The coefficient for the subject is usually 0, depending on the difficulty, it can be from 0.1 to 0.3
+
 The class coefficient depends on the number of students, the number of students <20 class coefficient is -0.5, the class coefficient from 20 to 40 students is 0, the class coefficient from 40 students is 0.2
 
 Write a program that calculates tuition fees for a semester for invited teachers. The program has the following functions:
