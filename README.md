@@ -19,15 +19,14 @@ Write a program that calculates tuition fees for a semester for invited teachers
 
 Required to be submitted in the report
 Problem design and analysis documents: There is a cover page and a table of contents. Suggestions for the content of the sections
-Ask for math problems
-Analysis of professional requirements for teaching
-Analyze functions: Write scripts for each function
-Database design (at least to be stored in text files)
-Data design, interface design of each function
-Algorithm design: Input, output, implementation steps
-Installation: Tools used, source code structure, meaning of each source code file, meaning of functions
-Conclusion and direction for expansion
-Specific work assignment table for each team member
+1. Ask for math problems
+2. Analysis of professional requirements for teaching
+3. Analyze functions: Write scripts for each function
+4. Database design (at least to be stored in text files)
+5. Data design, interface design of each function
+6. Algorithm design: Input, output, implementation steps
+7. Installation: Tools used, source code structure, meaning of each source code file, meaning of functions1.
+8. Conclusion and direction for expansion
 
 ## Preamble
 ![image](https://user-images.githubusercontent.com/127305381/236701214-146afa6b-6be5-4f4d-8b3f-f0b14fefb0c8.png)
