@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:paddingLeft="8dp"
+    android:background="@drawable/layout_backg"
+    android:paddingRight="14dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="20dp"
+    android:layout_height="wrap_content">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="10dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/nothing90"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="cursive"
+                android:text="Add Class"
+                android:textColor="@color/black"
+                android:textSize="28sp" />
+
+            <ImageButton
+                android:id="@+id/btn_exitimg"
+                android:layout_width="34dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/layout_backg"
+                app:srcCompat="@drawable/icon_close" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtNote0"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:text="Well, I have a small caveat."
+            android:textSize="13sp"
+            tools:ignore="RtlHardcoded" />
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:text="Nhap ten Lop hoc" />
+
+        <EditText
+            android:id="@+id/edtTenLopHoc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:textSize="12sp"
+            android:inputType="textPersonName"
+            android:hint="Name class" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:text="Chon Mon hoc" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="40sp"
+            android:layout_marginTop="2dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rd_1"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Toan"
+                android:textSize="10dp" />
+
+            <RadioButton
+                android:id="@+id/rd_2"
+                android:layout_width="67dp"
+                android:layout_height="match_parent"
+                android:text="Van"
+                android:textSize="10dp" />
+
+            <RadioButton
+                android:id="@+id/rd_3"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:text="Anh"
+                android:textSize="10dp" />
+            <RadioButton
+                android:id="@+id/rd_4"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:text="Ly"
+                android:textSize="10dp" />
+            <RadioButton
+                android:id="@+id/rd_5"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:text="Hoa"
+                android:textSize="10dp" />
+        </RadioGroup>
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:text="Nhap so Luong sinh Vien" />
+        <EditText
+            android:id="@+id/edtSoluong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:textSize="12sp"
+            android:inputType="textPersonName"
+            android:hint="number" />
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_marginTop="6dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_add"
+                android:layout_width="146dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:background="@drawable/layout_backg"
+                android:text="Add now" />
+
+<!--        </LinearLayout>-->
+
+    </LinearLayout>
+
+</LinearLayout>
