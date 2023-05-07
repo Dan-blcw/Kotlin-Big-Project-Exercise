@@ -7,13 +7,14 @@ The coefficient for the subject is usually 0, depending on the difficulty, it ca
 The class coefficient depends on the number of students, the number of students <20 class coefficient is -0.5, the class coefficient from 20 to 40 students is 0, the class coefficient from 40 students is 0.2
 
 Write a program that calculates tuition fees for a semester for invited teachers. The program has the following functions:
+
 1. Set a standard one-hour teaching fee (eg 100,000 VND)
 2. Setting the coefficients of teachers according to qualifications
 3. Enter teacher information (information such as full name, code, degree, ...)
 4. Enter information about classes that teachers teach in a semester (information such as subjects, number of students, ..)
 5. Calculate the teacher's fee for that period. Print out a table with columns: No., class, number of periods, tuition The last row is the total row. (The first part has information such as teacher code, teacher name)
 
-Work in groups, required to submit
+Required to be submitted in the report
 Problem design and analysis documents: There is a cover page and a table of contents. Suggestions for the content of the sections
 Ask for math problems
 Analysis of professional requirements for teaching
