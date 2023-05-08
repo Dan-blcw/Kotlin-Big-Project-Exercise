@@ -27,9 +27,9 @@ class CreateUser : AppCompatActivity() {
     private lateinit var binding: ActivityCreateUserBinding
     private lateinit var teacher: Teacher
     private lateinit var oldTeacher: Teacher
+    lateinit var Monhoc: Subject
     var tt = 0.0;
     var hsgv = 0.0
-    lateinit var Monhoc: Subject
     var hsoLophoc= 0.0
     var isUpdate = false
 
@@ -52,7 +52,7 @@ class CreateUser : AppCompatActivity() {
         }
 
         buildBtn()
-        buildAlertDialog()
+//        buildAlertDialog()
         buildListClass()
 
     }
@@ -110,22 +110,34 @@ class CreateUser : AppCompatActivity() {
         binding.btnExit.setOnClickListener {
             onBackPressed()
         }
-    }
-//
-//    private fun buildInti() {
-//
-//    }
-
-    private fun buildAlertDialog() {
         binding.btnAddclass.setOnClickListener {
-            val build = AlertDialog.Builder(this,R.style.ThemeCustom)
-            // khác so với extension là binding tự động gọi nên inflate from this là được
-            val diologBinding = CustomAddclassBinding.inflate(LayoutInflater.from(this))
-            build.setView(diologBinding.root)
-            diologBinding.btnExitimg.setOnClickListener { diolog.dismiss() }
-            diologBinding.btnAdd.setOnClickListener{
-                if(diologBinding.edtTenLopHoc.text.isNotEmpty()|| diologBinding.edtSoluong.text.isNotEmpty()){
-//                Toast.makeText(this@CreateUser,"You just click on ADD Now",Toast.LENGTH_SHORT).show()
+            buildAlertDialog(false,-1)
+        }
+
+    }
+
+
+    private fun buildAlertDialog(update: Boolean,pos :Int) {
+        val build = AlertDialog.Builder(this,R.style.ThemeCustom)
+        val diologBinding = CustomAddclassBinding.inflate(LayoutInflater.from(this))
+        build.setView(diologBinding.root)
+//        if(update){
+//            diologBinding.edtTenLopHoc.setText(const.listNClass[pos].tlh)
+//            diologBinding.edtTenLopHoc.isSelected = true
+//            diologBinding.edtSoluong.setText(const.listNClass[pos].ssv)
+//            diologBinding.edtSoluong.isSelected = true
+//            val vler = const.listNClass[pos].tmh
+//            when(vler){
+//                "Van" -> diologBinding.rd2.isChecked
+//                "Anh" -> diologBinding.rd3.isChecked
+//                "Ly" -> diologBinding.rd4.isChecked
+//                "Hoa" -> diologBinding.rd5.onCheckIsTextEditor()
+//                else -> diologBinding.rd1.isChecked
+//            }
+//        }
+        diologBinding.btnExitimg.setOnClickListener { diolog.dismiss() }
+        diologBinding.btnAdd.setOnClickListener{
+            if(diologBinding.edtTenLopHoc.text.isNotEmpty()|| diologBinding.edtSoluong.text.isNotEmpty()){
                 if(diologBinding.rd1.isChecked){
                     Monhoc = const.Toan
                 }else if(diologBinding.rd2.isChecked){
@@ -147,17 +159,21 @@ class CreateUser : AppCompatActivity() {
                     hsoLophoc = 0.0
                 }
                 val nClass = NClass(oldTeacher.id!!,tenlh,Monhoc.name,Monhoc.heso,Monhoc.stiet,sl,hsoLophoc,hsgv)
-                buildCl(nClass)
+//                if(!update){
+                    buildCl(nClass)
+//                }else{
+//                    val nClass = NClass(oldTeacher.id!!,tenlh,Monhoc.name,Monhoc.heso,Monhoc.stiet,sl,hsoLophoc,hsgv)
+//                    const.listNClass[pos] = nClass
+//                }
                 diolog.dismiss()
-                }else{
-                    Toast.makeText(this@CreateUser,"Add class failed !!!",Toast.LENGTH_LONG).show()
-                    diolog.dismiss()
-                }
-
+            }else{
+                Toast.makeText(this@CreateUser,"Add class failed !!!",Toast.LENGTH_LONG).show()
+                diolog.dismiss()
             }
-            diolog = build.create()
-            diolog.show()
+
         }
+        diolog = build.create()
+        diolog.show()
     }
 
     private fun buildCl(nClass: NClass) {
@@ -165,11 +181,8 @@ class CreateUser : AppCompatActivity() {
         val list = const.listNClass.filter { it.id_gv == oldTeacher.id}
         val rvAdapter = classAdapter(list,object: Util{
             override fun OnClickTitle(pos: Int) {
-                Toast.makeText(
-                    this@CreateUser,
-                    "Click ${list[pos].tlh}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this@CreateUser,list[pos].tlh,Toast.LENGTH_LONG).show()
+//                buildAlertDialog(true,pos)
             }
 
         },)
