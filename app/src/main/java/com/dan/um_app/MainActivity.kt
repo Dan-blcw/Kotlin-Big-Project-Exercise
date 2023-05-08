@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() ,TotalAdapter.NotesOnClickListener{
             build.setView(diologBinding.root)
             diologBinding.edtHdayTC.setText(const.Tien_day1H.toString())
             diologBinding.btnAddTienday1h.setOnClickListener{
-                const.Tien_day1H = diologBinding.edtHdayTC.text.toString().toDouble()
+                const.Tien_day1H = diologBinding.edtHdayTC.text.toString().toInt()
                 diolog.dismiss()
             }
             diolog = build.create()

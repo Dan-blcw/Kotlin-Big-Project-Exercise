@@ -117,7 +117,7 @@ class CreateUser : AppCompatActivity() {
     }
 
 
-    private fun buildAlertDialog(update: Boolean,pos :Int) {
+    private fun buildAlertDialog(update: Boolean, pos :Int) {
         val build = AlertDialog.Builder(this,R.style.ThemeCustom)
         val diologBinding = CustomAddclassBinding.inflate(LayoutInflater.from(this))
         build.setView(diologBinding.root)
@@ -159,8 +159,8 @@ class CreateUser : AppCompatActivity() {
                     hsoLophoc = 0.0
                 }
                 val nClass = NClass(oldTeacher.id!!,tenlh,Monhoc.name,Monhoc.heso,Monhoc.stiet,sl,hsoLophoc,hsgv)
-//                if(!update){
-                    buildCl(nClass)
+                buildCl(nClass)
+//                if(!update)
 //                }else{
 //                    val nClass = NClass(oldTeacher.id!!,tenlh,Monhoc.name,Monhoc.heso,Monhoc.stiet,sl,hsoLophoc,hsgv)
 //                    const.listNClass[pos] = nClass
@@ -170,7 +170,6 @@ class CreateUser : AppCompatActivity() {
                 Toast.makeText(this@CreateUser,"Add class failed !!!",Toast.LENGTH_LONG).show()
                 diolog.dismiss()
             }
-
         }
         diolog = build.create()
         diolog.show()

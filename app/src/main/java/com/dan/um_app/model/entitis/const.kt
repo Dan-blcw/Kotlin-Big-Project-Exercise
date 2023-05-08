@@ -9,7 +9,7 @@ class const {
         val Anh = Subject("Anh",0.2,3)
         val Ly = Subject("Ly",0.3,3)
         val Hoa = Subject("Hoa",0.3,4)
-        var Tien_day1H = 100000.0
+        var Tien_day1H = 100000
         var listNClass = mutableListOf<NClass>()
         val listImg = mutableListOf<String>()
         fun create(){

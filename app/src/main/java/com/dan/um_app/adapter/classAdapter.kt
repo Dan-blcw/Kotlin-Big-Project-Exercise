@@ -39,9 +39,9 @@ class classAdapter (var list: List<NClass>,val util: Util): RecyclerView.Adapter
 
             tenlop.text = "Name Class:   ${list[position].tlh}"
             monHoc.text = "Subject :${list[position].tmh}"
-            soluong.text = "Number of Student: ${list[position].ssv.toString()}"
-            hsmh.text = "HSMH: ${list[position].hsmh.toString()}"
-            hslh.text = "HSL: ${list[position].hslh.toString()}"
+            soluong.text = "Number of Student: ${list[position].ssv}"
+            hsmh.text = "HSMH: ${list[position].hsmh}"
+            hslh.text = "HSL: ${list[position].hslh}"
             sotiet.text = "Number of lessons: ${list[position].stiet}"
 
             tongtien.text = "1 class tuition fee: ${tinhtien1lop(list[position])} VND"
@@ -65,7 +65,7 @@ class classAdapter (var list: List<NClass>,val util: Util): RecyclerView.Adapter
         }
     }
     fun tinhtien1lop(nClass: NClass): Double{
-        return const.Tien_day1H*(nClass.hslh + nClass.hsgv+ nClass.hsmh)*nClass.stiet
+        return const.Tien_day1H*(nClass.hslh + nClass.hsgv + nClass.hsmh)*nClass.stiet
     }
 
 }
